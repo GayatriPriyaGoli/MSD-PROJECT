@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single-Page Website</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            scroll-behavior: smooth;
+        }
+        
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .navbar a:hover {
+            color: #e74c3c;
+        }
+        
+        section {
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
+        }
+        
+        iframe {
+            width: 100%;
+            border: none;
+            height: 100vh;
+            display: block;
+        }
+        /* Fixed-length Navigation bar */
+        .navbar {
+            background-color: #800000; /* Maroon color */
+            width: 320px; /* Made the navbar wider */
+            height: 100vh; /* Full height of viewport */
+            padding: 20px;
+            z-index: 2;
+            position: fixed; /* Fixed position to keep it in place */
+            left: 20px; /* Move the navbar away from the left edge */
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Distribute space between profile, nav items, and footer */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBob3RvJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 5px; /* Reduced margin */
+        }
+
+        /* Profile Text */
+        .profile-text {
+            text-align: center;
+            color: white;
+            margin-bottom: 5px; /* Adjusted margin */
+        }
+
+        .profile-text h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .profile-text p {
+            font-size: 14px;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        /* Navigation links */
+        .navbar ul {
+            list-style-type: none;
+            width: 100%;
+            padding: 0; /* Reset padding */
+        }
+
+        .navbar ul li {
+            margin: 0; /* Reset margins to 0 */
+            width: 100%;
+            position: relative;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            text-align: center;
+            padding: 15px 0;
+            transition: all 0.3s;
+            width: 100%; /* Ensure full width */
+        }
+
+        /* White line after each link */
+        .navbar ul li:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: white;
+        }
+
+        /* Hover effect */
+        .navbar ul li a:hover {
+            background-color: white;
+            color:#8E2D3A ; /* Maroon color for text */
+            width: 100%;
+        }
+
+        /* Social media icons */
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1px; /* Adjusted margin */
+            position: relative; /* To position the line below the icons */
+            width: 100%; /* Ensure the social icons container spans full width */
+            justify-content: center; /* Center the icons within the container */
+        }
+
+        /* Full-width line below social media icons */
+        .social-icons::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; /* Position the line just below the icons */
+            width: 100%;
+            height: 1px;
+            background-color: white;
+        }
+
+        .social-icons img {
+            width: 24px; /* Smaller size */
+            height: 24px; /* Smaller size */
+            transition: opacity 0.3s;
+        }
+
+        .social-icons img:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .footer {
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Title Section */
+        .title-section {
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            left: 340px; /* Adjust to ensure it's next to the navbar */
+            z-index: 2;
+            width: calc(100% - 340px); /* Adjust to fit remaining width */
+            display: flex;
+            flex-direction: column; /* Stack title and paragraph vertically */
+            align-items: center; /* Center align horizontally */
+            height: auto; /* Adjust height automatically based on content */
+            padding: 20px; /* Add padding if needed */
+            text-align: center; /* Center align text */
+        }
+
+        .title-section h1 {
+            color: white;
+            font-size: 36px; /* Adjust size as needed */
+            margin-bottom: 10px; /* Margin below the title */
+        }
+
+        .title-section p {
+            color: white;
+            font-size: 18px; /* Adjust size as needed */
+            text-align: center; /* Center align text */
+            margin: 0; /* Remove default margin */
+        }
+        .navbar {
+    background-color: #800000; /* Maroon color */
+    width: 320px; /* Made the navbar wider */
+    height: 100vh; /* Full height of viewport */
+    padding: 20px;
+    z-index: 2;
+    position: fixed; /* Fixed position to keep it in place */
+    left: 20px; /* Move the navbar away from the left edge */
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Distribute space between profile, nav items, and footer */
+    overflow-y: auto; /* Enable vertical scrolling within navbar */
+    overflow-x: hidden; /* Prevent horizontal overflow within navbar */
+}
+    </style>
+</head>
+<div class="navbar">
+    <!-- Profile Section -->
+    <div class="profile-pic"></div>
+    <div class="profile-text">
+        <h1>Reflux Me</h1>
+        <p>Web Developer</p>
+    </div>
+    <!-- Navigation Links -->
+    <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="page3.html">What I'm good at</a></li>
+        <li><a href="page2.html">My Work</a></li>
+        <li><a href="page4.html">Contact Me</a></li>
+    </ul>
+
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+        <a href="https://twitter.com" target="_blank"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?ga=GA1.1.345571331.1723207044&semt=ais_hybrid" alt="Twitter"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="https://img.freepik.com/premium-photo/linkedin-icon-vector-banner-logo-illustration_895118-12045.jpg?ga=GA1.1.345571331.1723207044&semt=ais_hybrid" alt="LinkedIn"></a>
+        <a href="https://instagram.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Reflux Me. All rights reserved.
+    </div>
+</div>
+<div class="navbar">
+    <!-- Profile Section -->
+    <div class="profile-pic"></div>
+    <div class="profile-text">
+        <h1>Reflux Me</h1>
+        <p>Web Developer</p>
+    </div>
+    <!-- Navigation Links -->
+    <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="page3.html">What I'm good at</a></li>
+        <li><a href="page2.html">My Work</a></li>
+        <li><a href="page4.html">Contact Me</a></li>
+    </ul>
+
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+        <a href="https://twitter.com" target="_blank"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?ga=GA1.1.345571331.1723207044&semt=ais_hybrid" alt="Twitter"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="https://img.freepik.com/premium-photo/linkedin-icon-vector-banner-logo-illustration_895118-12045.jpg?ga=GA1.1.345571331.1723207044&semt=ais_hybrid" alt="LinkedIn"></a>
+        <a href="https://instagram.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Reflux Me. All rights reserved.
+    </div>
+</div>
+
+<body>
+
+    <section id="section1">
+        <iframe src="page1.html" title="What I'm Good At"></iframe>
+    </section>
+
+    <section id="section2">
+        <iframe src="page3.html" title="Booking Form"></iframe>
+    </section>
+
+    <section id="section3">
+        <iframe src="page2.html" title="My Works"></iframe>
+    </section>
+
+    <section id="section4">
+        <iframe src="page4.html" title="Contact Me"></iframe>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Works</title>
+    <style>
+        .header {
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+    margin-left: 220px; /* Adjust this value to move the text right */
+}
+/* Style the gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+            gap: 10px; /* Space between items */
+        }
+
+        .gallery-item {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        /* Style for empty grid items */
+        .gallery-item.empty {
+            display: block;
+        }
+
+        /* Hide images in the first column of each row */
+        .gallery-item:not(.empty):nth-child(3n+1) {
+            display: none;
+        }
+
+        /* Ensure visible items align correctly */
+        .gallery-item:not(.empty) {
+            display: block;
+        }
+        /* Gallery Styling */
+.gallery img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    border-bottom: 3px solid grey; /* Grey line under the image */
+    background-color: transparent; /* Make background transparent */
+}
+
+        /* Body Styling */
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Gallery Styling */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    padding-top: 20px;
+    height: calc(100vh - 140px); /* Adjust height to fit within the viewport */
+    overflow: auto; /* Allow scrolling within the gallery */
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>My Work</h1>
+        <p>Aenean sollicitudin ex mauris, lobortis lobortis diam euismod sit amet. Duis ac elit vulputate, lobortis arcu quis, vehicula mauris.</p>
+        <div class="menu">
+            <span class="menu-item active" data-filter="all">All</span>
+            <span class="menu-item" data-filter="people">People</span>
+            <span class="menu-item" data-filter="nature">Nature</span>
+            <span class="menu-item" data-filter="animals">Animals</span>
+        </div>
+    </div>
+    <div class="gallery">
+        <!-- Original Images -->
+        <div class="gallery-item all empty"></div>
+        <img class="gallery-item all" src="https://thumbs.dreamstime.com/b/man-wearing-blue-shirt-black-shorts-standing-top-brown-rock-formations-under-clear-sky-118598759.jpg" alt="Person standing on rock formations">
+        <img class="gallery-item all" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6nwVVlxpwpmW3-m6qcDdGlhBoW-avBaaf66Ba7yISslxbKct7KVrtzKK4UWlj5T-c800&usqp=CAU" alt="Landscape with mountains">
+        <div class="gallery-item all empty"></div>
+        <img class="gallery-item all" src="https://c0.wallpaperflare.com/preview/807/450/462/architectural-design-architecture-buildings-camera.jpg" alt="Architectural design">
+        <img class="gallery-item all" src="https://www.holycross.edu/sites/default/files/styles/768w/public/mrf/bandaloop_rotated_image.jpg?itok=cb-q_vi4" alt="Artistic boat image">
+        <div class="gallery-item all empty"></div>
+        <img class="gallery-item all" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaspxtXOV3MQTeo1dRpeetaw2QmWwAihf7cTp8nyL3H-P7-3NfO9KUHqSf2Tn1zodjPA&usqp=CAU" alt="Beach with rocks">
+        <img class="gallery-item all" src="https://5.imimg.com/data5/SELLER/Default/2022/7/IY/GC/VZ/7993339/adventure-party-boat-in-goa-500x500.jpg" alt="Adventure party boat">
+        
+        <!-- Additional Images for 'People' -->
+        <div class="gallery-item people empty" style="display:none;"></div>
+        <img class="gallery-item people" src="https://plus.unsplash.com/premium_photo-1671581559799-5d370f768feb?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ucyUyMHJlYWRpbmclMjBib29rfGVufDB8fDB8fHww" alt="Person reading book" style="display:none;">
+        <img class="gallery-item people" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHBlb3BsZXxlbnwwfHx8fDE2OTQyODU1NTU&ixlib=rb-4.0.3&q=80&w=400" alt="Smiling person" style="display:none;">
+        
+        <!-- Additional Images for 'Nature' -->
+        <div class="gallery-item nature empty" style="display:none;"></div>
+        <img class="gallery-item nature" src="https://plus.unsplash.com/premium_photo-1673240367277-e1d394465b56?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bW91bnRhaW58ZW58MHx8MHx8fDA%3D" alt="Mountain view" style="display:none;">
+        <img class="gallery-item nature" src="https://media.istockphoto.com/id/1817775407/photo/sunrays.jpg?s=612x612&w=0&k=20&c=z0t9W0c3OWUYn2dctuuK_FuofVyYvlvSdLjsIGoPaXM=" alt="Forest" style="display:none;">
+        <div class="gallery-item nature empty" style="display:none;"></div>
+        <img class="gallery-item nature" src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmF0dXJlfGVufDB8fDB8fHww" alt="green" style="display:none;">
+        <img class="gallery-item nature" src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D" alt="green" style="display:none;">
+        
+        <!-- Additional Images for 'Animals' -->
+        <div class="gallery-item animals empty" style="display:none;"></div>
+        <img class="gallery-item animals" src="https://plus.unsplash.com/premium_photo-1661861726461-d62b9ac2cb77?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YW5pbWFsJTIwZWxlcGhhbnR8ZW58MHx8MHx8fDA%3D" alt="Elephant" style="display:none;">
+        <img class="gallery-item animals" src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGFuaW1hbHN8ZW58MHx8MHx8fDA%3D" alt="Cat" style="display:none;">
+        <div class="gallery-item animals empty" style="display:none;"></div>
+        <img class="gallery-item animals" src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YW5pbWFsJTIwbGlvbnxlbnwwfHwwfHx8MA%3D%3D" alt="Lion" style="display:none;">
+    </div>
+    <style>
+        /* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    position: relative;
+    min-height: 100vh;
+    background: url('https://images.unsplash.com/photo-1541789094913-f3809a8f3ba5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVzZXJ0JTIwbGFuZHNjYXBlfGVufDB8fDB8fHww') center/cover no-repeat, rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Header Styling */
+.header {
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2em;
+    position: relative;
+    display: inline-block;
+}
+
+.header h1::after {
+    content: "";
+    display: block;
+    width: 50px; /* Adjust the width to control the length of the line */
+    height: 2px; /* Adjust the height to control the thickness of the line */
+    background-color: #e74c3c; /* Red color for the underline */
+    margin: 8px auto 0; /* Adjust the spacing between the text and the line */
+}
+
+.header p {
+    margin: 10px 0 0;
+    font-size: 1em;
+}
+
+/* Menu Styling */
+.menu {
+    margin-top: 20px;
+    display: inline-block;
+    margin-left : 100px;
+}
+
+.menu-item {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    margin: 0 15px;
+    cursor: pointer;
+    position: relative;
+    color: #ffffff; /* White color for inactive items */
+    transition: color 0.3s ease;
+}
+
+.menu-item.active {
+    color: #e74c3c; /* Red color for the active item */
+    border-bottom: 2px solid #e74c3c; /* Underline for the active item */
+}
+
+.menu-item:hover {
+    color: #e74c3c; /* Red color on hover */
+}
+
+/* Gallery Styling */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    padding-top: 20px;
+}
+
+.gallery .empty {
+    /* Empty space, no content needed */
+}
+
+.gallery img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    border-bottom: 3px solid grey; /* Grey line under the image */
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+/* Gallery Styling */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Make sure each row has 3 columns */
+.gallery-item {
+    grid-column: span 1; /* Ensure each item spans one column */
+}
+
+/* Display images in the 2nd and 3rd columns, leaving the 1st column empty */
+.gallery-item:nth-of-type(3n+1) {
+    /* Empty space for the first column */
+    display: none;
+}
+
+/* Display the images in the 2nd and 3rd columns */
+.gallery-item:nth-of-type(3n+2),
+.gallery-item:nth-of-type(3n+3) {
+    display: block;
+}
+
+/* Style for visible gallery items */
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    border-bottom: 3px solid grey; /* Grey line under the image */
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+    </style>
+    <script>
+        // Get all menu items
+        const menuItems = document.querySelectorAll('.menu-item');
+        // Get all gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        // Function to apply the grid layout
+        function applyGridLayout() {
+            const allItems = Array.from(galleryItems);
+            for (let i = 0; i < allItems.length; i += 3) {
+                allItems[i]?.classList.add('empty');
+                allItems[i+1]?.classList.remove('empty');
+                allItems[i+2]?.classList.remove('empty');
+            }
+        }
+
+        // Show all items and apply grid layout on page load
+        window.onload = () => {
+            galleryItems.forEach(item => item.style.display = 'block');
+            applyGridLayout();
+        };
+
+        // Add a click event listener to each menu item
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove the 'active' class from all items
+                menuItems.forEach(i => i.classList.remove('active'));
+
+                // Add the 'active' class to the clicked item
+                item.classList.add('active');
+
+                // Get the filter category
+                const filter = item.getAttribute('data-filter');
+
+                // Show or hide images based on the filter
+                galleryItems.forEach(img => {
+                    if (filter === 'all' || img.classList.contains(filter)) {
+                        img.style.display = 'block'; // Show image
+                    } else {
+                        img.style.display = 'none'; // Hide image
+                    }
+                });
+
+                // Reapply grid layout to ensure the first box is empty
+                applyGridLayout();
+            });
+        });
+    </script>
+</body>
+</html>

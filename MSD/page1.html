@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Length Navigation with Profile</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-screen background image */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1541789094913-f3809a8f3ba5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVzZXJ0JTIwbGFuZHNjYXBlfGVufDB8fDB8fHww');
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal overflow */
+        }
+
+        /* Overlay to make the background image transparent */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.534); /* Adjust transparency here */
+            z-index: 1;
+        }
+
+        /* Fixed-length Navigation bar */
+        .navbar {
+            background-color: #800000; /* Maroon color */
+            width: 320px; /* Made the navbar wider */
+            height: 100vh; /* Full height of viewport */
+            padding: 20px;
+            z-index: 2;
+            position: fixed; /* Fixed position to keep it in place */
+            left: 20px; /* Move the navbar away from the left edge */
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Distribute space between profile, nav items, and footer */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBob3RvJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 5px; /* Reduced margin */
+        }
+
+        /* Profile Text */
+        .profile-text {
+            text-align: center;
+            color: white;
+            margin-bottom: 5px; /* Adjusted margin */
+        }
+
+        .profile-text h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .profile-text p {
+            font-size: 14px;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        /* Navigation links */
+        .navbar ul {
+            list-style-type: none;
+            width: 100%;
+            padding: 0; /* Reset padding */
+        }
+
+        .navbar ul li {
+            margin: 0; /* Reset margins to 0 */
+            width: 100%;
+            position: relative;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            text-align: center;
+            padding: 15px 0;
+            transition: all 0.3s;
+            width: 100%; /* Ensure full width */
+        }
+
+        /* White line after each link */
+        .navbar ul li:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: white;
+        }
+
+        /* Hover effect */
+        .navbar ul li a:hover {
+            background-color: white;
+            color:#8E2D3A ; /* Maroon color for text */
+            width: 100%;
+        }
+
+        /* Social media icons */
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1px; /* Adjusted margin */
+            position: relative; /* To position the line below the icons */
+            width: 100%; /* Ensure the social icons container spans full width */
+            justify-content: center; /* Center the icons within the container */
+        }
+
+        /* Full-width line below social media icons */
+        .social-icons::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; /* Position the line just below the icons */
+            width: 100%;
+            height: 1px;
+            background-color: white;
+        }
+
+        .social-icons img {
+            width: 24px; /* Smaller size */
+            height: 24px; /* Smaller size */
+            transition: opacity 0.3s;
+        }
+
+        .social-icons img:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .footer {
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Title Section */
+        .title-section {
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            left: 550px; /* Adjust to ensure it's next to the navbar */
+            z-index: 1;
+            width: calc(100% - 340px); /* Adjust to fit remaining width */
+            display: flex;
+            flex-direction: column; /* Stack title and paragraph vertically */
+            align-items: center; /* Center align horizontally */
+            height: auto; /* Adjust height automatically based on content */
+            padding: 20px; /* Add padding if needed */
+            text-align: right; /* Center align text */
+        }
+
+        .title-section h1 {
+            color: white;
+            font-size: 36px; /* Adjust size as needed */
+            margin-bottom: 10px; /* Margin below the title */
+        }
+
+        .title-section p {
+            color: white;
+            font-size: 18px; /* Adjust size as needed */
+            text-align: center; /* Center align text */
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Two-Column Section with Text on the Left and Image on the Right */
+        .two-column-section {
+            display: flex; /* Use flexbox for layout */
+            gap: 20px; /* Space between columns */
+            margin: 20px 0; /* Add space above and below the section */
+            width: calc(100% - 400px); /* Adjust to fit remaining width */
+            left: 400px; /* Align with the content area */
+            position: absolute;
+            top: 180px; /* Adjust top position as needed */
+            color: white; /* Set text color to white */
+            z-index: 2; /* Ensure it is above the background overlay */
+            background: rgba(0, 0, 0, 0); /* Make sure background is transparent for this section */
+        }
+
+        .two-column-section .column {
+            padding: 10px; /* Add padding inside each column */
+        }
+
+        .two-column-section img {
+            width: 350px; /* Set fixed width */
+            height: 250px; /* Set fixed height */
+            display: block;
+            filter:none;
+        }
+
+        .two-column-section .text-column {
+            padding-left: 30px; /* Add space between image and text */
+            padding-right:130px;
+            text-align: left; /* Left-align text within this column */
+            color:white;
+            margin-top: 25px;
+        }
+
+        .two-column-section h1, 
+        .two-column-section p {
+            color: white; /* Change text color to white */
+            margin:0;
+        }
+
+        .two-column-section h1 {
+            font-size: 24px; /* Adjust size as needed */
+            margin-bottom: 10px; /* Margin below the title */
+        }
+
+        .two-column-section p {
+            font-size: 18px; /* Adjust size as needed */
+            line-height: 1.6; /* Improve readability */
+        }
+
+        /* Read More Button */
+        .read-more-button {
+            display: inline-block;
+            background-color: #800000; /* Maroon color */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+            margin-top: 20px; /* Space between text and button */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .read-more-button:hover {
+            background-color: #a00000; /* Darker maroon on hover */
+            color: #f0f0f0; /* Light color for text on hover */
+        }
+
+        /* Line below the two-column section */
+        .two-column-section::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px; /* Very thin line */
+            background-color: white; /* White line color */
+            position: absolute;
+            bottom: 0; /* Align to the bottom of the section */
+            left: 0;
+        }
+
+        /* Two-Column Section with Text on the Right and Image on the Left */
+        .two-column-section-reversed {
+            display: flex; /* Use flexbox for layout */
+            gap: 20px; /* Space between columns */
+            margin: 20px 0; /* Add space above and below the section */
+            width: calc(100% - 400px); /* Adjust to fit remaining width */
+            left: 350px; /* Align with the content area */
+            position: absolute;
+            top: 480px; /* Adjust top position as needed */
+            color: rgb(0, 0, 0); /* Set text color to white */
+            z-index: 2; /* Ensure it is above the background overlay */
+            background: rgba(0, 0, 0, 0); /* Make sure background is transparent for this section */
+        }
+
+        .two-column-section-reversed .text-column {
+            padding-right: 30px; /* Add space between text and image */
+            padding-left: 130px;
+            text-align: left; /* Left-align text within this column */
+            color: rgb(249, 245, 245);
+            margin-top: 25px;
+        }
+
+        .two-column-section-reversed img {
+            width: 350px; /* Set fixed width */
+            height: 250px; /* Set fixed height */
+            display: block;
+            filter: none;
+        }
+
+        /* Line below the reversed section */
+        .two-column-section-reversed::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px; /* Very thin line */
+            background-color: white; /* White line color */
+            position: absolute;
+            bottom: 0; /* Align to the bottom of the section */
+            left: 0;
+        }
+        /* Prevent scrolling on the entire page */
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Full-screen background image */
+body {
+    background-image: url('https://images.unsplash.com/photo-1541789094913-f3809a8f3ba5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVzZXJ0JTIwbGFuZHNjYXBlfGVufDB8fDB8fHww');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Overlay to make the background image transparent */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.534); /* Adjust transparency here */
+    z-index: 1;
+}
+
+/* Fixed-length Navigation bar */
+.navbar {
+    background-color: #800000; /* Maroon color */
+    width: 320px; /* Made the navbar wider */
+    height: 100vh; /* Full height of viewport */
+    padding: 20px;
+    z-index: 2;
+    position: fixed; /* Fixed position to keep it in place */
+    left: 20px; /* Move the navbar away from the left edge */
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Distribute space between profile, nav items, and footer */
+    overflow-y: auto; /* Enable vertical scrolling within navbar */
+    overflow-x: hidden; /* Prevent horizontal overflow within navbar */
+}
+
+/* Title Section */
+.title-section {
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    left: 500px; /* Adjust to ensure it's next to the navbar */
+    z-index: 2;
+    width: calc(100% - 340px); /* Adjust to fit remaining width */
+    display: flex;
+    flex-direction: column; /* Stack title and paragraph vertically */
+    align-items: center; /* Center align horizontally */
+    height: auto; /* Adjust height automatically based on content */
+    padding: 20px; /* Add padding if needed */
+    text-align: center; /* Center align text */
+}
+
+/* Two-Column Sections */
+.two-column-section,
+.two-column-section-reversed {
+    display: flex; /* Use flexbox for layout */
+    gap: 20px; /* Space between columns */
+    margin: 20px 0; /* Add space above and below the section */
+    width: calc(100% - 400px); /* Adjust to fit remaining width */
+    position: absolute;
+    color: white; /* Set text color to white */
+    z-index: 2; /* Ensure it is above the background overlay */
+    background: rgba(0, 0, 0, 0); /* Make sure background is transparent for this section */
+}
+
+.two-column-section {
+    top: 180px; /* Adjust top position as needed */
+}
+
+.two-column-section-reversed {
+    top: 480px; /* Adjust top position as needed */
+    color: white; /* Set text color to black for reversed section */
+}
+
+/* Adjusted for content overflow in two-column sections */
+.two-column-section img,
+.two-column-section-reversed img {
+    width: 350px; /* Set fixed width */
+    height: 250px; /* Set fixed height */
+    display: block;
+    filter: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <!-- Profile Section -->
+        <div class="profile-pic"></div>
+        <div class="profile-text">
+            <h1>Reflux Me</h1>
+            <p>Web Developer</p>
+        </div>
+        <!-- Navigation Links -->
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="page3.html">What I'm good at</a></li>
+            <li><a href="page2.html">My Work</a></li>
+            <li><a href="page4.html">Contact Me</a></li>
+        </ul>
+
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+            <a href="https://twitter.com" target="_blank"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?ga=GA1.1.345571331.1723207044&semt=ais_hybrid" alt="Twitter"></a>
+            <a href="https://linkedin.com" target="_blank"><img src="https://img.freepik.com/premium-photo/linkedin-icon-vector-banner-logo-illustration_895118-12045.jpg?ga=GA1.1.345571331.1723207044&semt=ais_hybrid" alt="LinkedIn"></a>
+            <a href="https://instagram.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            &copy; 2024 Reflux Me. All rights reserved.
+        </div>
+    </div>
+
+    <div class="title-section">
+        <center>
+            <h1>ABOUT ME</h1>
+            <p>This is a Bootstrap v4.2.1 CSS Template for you. Edit and use this layout for your site. Aliquam erat volutpat.<br> Nam ut nulla eu sem malesuada malesuada nec nec nibh.</p>
+        </center>
+    </div>
+    
+    <!-- Two-Column Section -->
+    <div class="two-column-section">
+        <div class="column">
+            <img src="https://plus.unsplash.com/premium_photo-1664970900025-1e3099ca757a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D" alt="Cafe Image">
+        </div>
+        <div class="text-column">
+            <h1>Reflux HTML CSS Template</h1>
+            <p>Donec tristique feugiat lacus, at sollicitudin nunc euismod sed. Mauris viverra, erat non sagittis gravida, elit dui mollis ante, sit amet eleifend purus ligula eget eros. Sed tincidunt quam vitae neque pharetra dignissim eget ut libero.</p>
+            <a href="#read-more" class="read-more-button">Read More</a>
+        </div>
+    </div>
+    <!-- Two-Column Section with Text on the Left and Image on the Right -->
+    <div class="two-column-section-reversed">
+        <div class="text-column">
+            <h1>Reflux HTML CSS Template</h1>
+            <p>Donec tristique feugiat lacus, at sollicitudin nunc euismod sed. Mauris viverra, erat non sagittis gravida, elit dui mollis ante, sit amet eleifend purus ligula eget eros. Sed tincidunt quam vitae neque pharetra dignissim eget ut libero.</p>
+            <a href="#read-more" class="read-more-button">Read More</a>
+        </div>
+        <div class="column">
+            <img src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D" alt="Cafe Image">
+        </div>
+    </div>
+</body>
+</html>

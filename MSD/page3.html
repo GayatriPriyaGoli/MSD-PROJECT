@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What I'm Good At</title>
+    <style>
+     body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.skills-section {
+    background: url('https://images.unsplash.com/photo-1541789094913-f3809a8f3ba5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVzZXJ0JTIwbGFuZHNjYXBlfGVufDB8fDB8fHww') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Fix the section to the viewport */
+    width: 100%; /* Ensure it covers the full width */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+}
+
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align items to the right */
+    overflow: auto; /* Allow scrolling within the overlay if necessary */
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px; /* Reduce gap between boxes */
+    width: 80%;
+    max-width: 900px;
+}
+
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            max-width: 600px;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .skills-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px; /* Reduce gap between boxes */
+    width: 80%;
+    max-width: 900px;
+    margin-left: 300px; /* Move the boxes 50px to the right */
+}
+
+
+.skill-box {
+    background-color: rgba(128, 128, 128, 0.5); /* Transparent gray */
+    padding: 15px; /* Reduce padding */
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .skill-box p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="skills-section">
+        <div class="overlay">
+            <h1>What I'm Good At?</h1>
+            <p>Curabitur leo felis, rutrum vitae varius eu, malesuada a tortor. Vestibulum congue leo et tellus aliquam, eu viverra nulla semper. Nullam eu faucibus diam. Donec eget massa ante.</p>
+            <div class="skills-container">
+                <div class="skill-box">
+                    <i class="icon">&#128161;</i>
+                    <h3>HTML5 & CSS3</h3>
+                    <p>Phasellus non convallis dolor. Integer tempor hendrerit arcu at bibendum. Sed ac ante non metus vehicula congue quis eget eros.</p>
+                </div>
+                <div class="skill-box">
+                    <i class="icon">&#128187;</i>
+                    <h3>Creative Ideas</h3>
+                    <p>Proin lacus massa, eleifend sed fermentum in, dignissim vel metus. Nunc accumsan leo nec felis porttitor, ultricies faucibus purus mollis.</p>
+                </div>
+                <div class="skill-box">
+                    <i class="icon">&#9881;</i>
+                    <h3>Easy Customize</h3>
+                    <p>Integer suscipit condimentum aliquet. Nam quis risus metus. Nullam faucibus quam eget arcu pretium tincidunt. Nam libero dui.</p>
+                </div>
+                <div class="skill-box">
+                    <i class="icon">&#128202;</i>
+                    <h3>Admin Dashboard</h3>
+                    <p>Vivamus et dui a massa venenatis fringilla. Proin lacus massa, eleifend sed fermentum in, dignissim vel metus. Nunc accumsan leo nec felis porttitor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
